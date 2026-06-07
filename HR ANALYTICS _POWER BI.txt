@@ -1,0 +1,136 @@
+# ============================================================
+# HR ATTRITION ANALYSIS — POWER BI DASHBOARD GUIDE
+# Author: Divya Sivakumar
+# ============================================================
+
+POWER BI DASHBOARD — STEP BY STEP
+===================================
+
+STEP 1: LOAD DATA
+------------------
+- Open Power BI Desktop
+- Click "Get Data" → Excel / CSV
+- Load: WA_Fn-UseC_-HR-Employee-Attrition.csv
+
+STEP 2: DATA CLEANING IN POWER QUERY
+--------------------------------------
+- Remove columns: EmployeeCount, Over18, StandardHours
+- Change Attrition column to: Yes=1, No=0 (Add Column → Conditional Column)
+- Create Age Group column using conditional logic:
+    18-25 | 26-35 | 36-45 | 46+
+- Create Salary Band column:
+    Low (<30K) | Mid (30K-60K) | High (60K+)
+- Click "Close & Apply"
+
+STEP 3: CREATE MEASURES (DAX)
+------------------------------
+Total Employees = COUNT(hr_attrition[EmployeeID])
+
+Attrition Count = CALCULATE(COUNT(hr_attrition[EmployeeID]), hr_attrition[Attrition] = "Yes")
+
+Attrition Rate = DIVIDE([Attrition Count], [Total Employees], 0)
+
+Avg Monthly Income = AVERAGE(hr_attrition[MonthlyIncome])
+
+Active Employees = CALCULATE(COUNT(hr_attrition[EmployeeID]), hr_attrition[Attrition] = "No")
+
+STEP 4: BUILD DASHBOARD VISUALS
+---------------------------------
+
+PAGE 1 — OVERVIEW
+   [KPI Cards]
+   - Total Employees
+   - Attrition Count
+   - Attrition Rate %
+   - Avg Monthly Income
+
+   [Donut Chart]
+   - Attrition: Yes vs No
+
+   [Bar Chart]
+   - Department vs Attrition Rate
+
+PAGE 2 — EMPLOYEE ANALYSIS
+   [Bar Chart]
+   - Age Group vs Attrition Rate
+
+   [Clustered Bar]
+   - Gender vs Attrition
+
+   [Bar Chart]
+   - Job Role vs Attrition Count
+
+PAGE 3 — RISK FACTORS
+   [Bar Chart]
+   - Overtime vs Attrition Rate
+
+   [Line Chart]
+   - Job Satisfaction vs Attrition Rate
+
+   [Bar Chart]
+   - Salary Band vs Attrition Rate
+
+   [Bar Chart]
+   - Years at Company vs Attrition
+
+STEP 5: ADD SLICERS (FILTERS)
+-------------------------------
+- Department
+- Gender
+- Age Group
+- OverTime (Yes/No)
+
+STEP 6: FORMAT & DESIGN
+------------------------
+- Use consistent color theme (Red for attrition, Blue for active)
+- Add title to each page
+- Add company logo placeholder
+- Enable tooltips on all charts
+
+STEP 7: PUBLISH
+----------------
+- File → Publish → Power BI Service (optional)
+- Export as PDF for portfolio
+
+
+# ============================================================
+# RESUME PROJECT DESCRIPTION
+# ============================================================
+
+PROJECT TITLE:
+HR Attrition Analysis | SQL | Python | Power BI | Excel
+
+BULLET POINTS FOR RESUME:
+---------------------------
+• Analyzed IBM HR dataset of 1,470+ employee records using SQL and Python to identify key attrition drivers including overtime, salary bands, job satisfaction, and tenure patterns.
+
+• Performed end-to-end data cleaning, preprocessing, and exploratory data analysis (EDA) using Python (Pandas, NumPy, Matplotlib, Seaborn) to uncover workforce trends and high-risk employee segments.
+
+• Built an interactive 3-page Power BI dashboard with KPI cards, slicers, and department-level attrition metrics, enabling HR teams to monitor retention trends and support data-driven decision-making.
+
+• Identified that employees working overtime had significantly higher attrition rates, and low-salary-band employees showed the highest turnover — insights that directly support workforce planning strategies.
+
+
+# ============================================================
+# INTERVIEW TALKING POINTS
+# ============================================================
+
+Q: Tell me about your HR Attrition project.
+A: "I analyzed IBM's HR dataset containing over 1,400 employee records to understand why employees leave. I used SQL for querying patterns across departments, Python for cleaning and visualization, and Power BI for building an interactive dashboard. Key findings were that overtime and low salary were the strongest predictors of attrition. This project helped me understand how data can directly support HR decision-making."
+
+Q: What was your biggest challenge?
+A: "Handling imbalanced data — only 16% of employees had left, so I had to be careful not to draw misleading conclusions. I focused on rate-based analysis rather than raw counts to get accurate insights."
+
+Q: What tools did you use and why?
+A: "SQL for structured querying, Python for EDA and visualizations, and Power BI for the final dashboard because it's the most business-friendly tool for stakeholder reporting."
+
+Q: What insights did you find?
+A: "Employees with overtime had nearly 3x higher attrition, younger employees (18-25) left more frequently, and low job satisfaction (rating 1-2) was strongly correlated with leaving."
+
+
+# ============================================================
+# DATASET DOWNLOAD LINK
+# ============================================================
+Kaggle: https://www.kaggle.com/datasets/pavansubhasht/ibm-hr-analytics-attrition-dataset
+File: WA_Fn-UseC_-HR-Employee-Attrition.csv
+Records: 1,470 employees | 35 columns
